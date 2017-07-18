@@ -10,8 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var draggableView: UIView!
+    @IBOutlet weak var droppableView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        draggableView.addInteraction(UIDragInteraction(delegate: self))
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -23,3 +29,15 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: UIDragInteractionDelegate {
+    func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+        let point = session.location(in: draggableView)
+        if let hitView = draggableView.hitTest(point, with: nil) {
+            if let labelView = hitView as? UILabel {
+                let text = (labelView.text ?? "") as NSString
+                return [UIDragItem(itemProvider: NSItemProvider(object: text))]
+            }
+        }
+        return []
+    }
+}
