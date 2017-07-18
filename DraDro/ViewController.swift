@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var droppableView: UIView!
     
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var forbiddenView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,9 @@ extension ViewController: UIDragInteractionDelegate {
 
 extension ViewController: UIDropInteractionDelegate {
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        let point = session.location(in: droppableView)
+        guard forbiddenView != droppableView.hitTest(point, with: nil) else { return UIDropProposal(operation: .forbidden) }
+        
         if session.canLoadObjects(ofClass: NSString.self) {
             return UIDropProposal(operation: .copy)
         } else {
@@ -60,13 +64,13 @@ extension ViewController: UIDropInteractionDelegate {
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         for item in session.items {
             if item.itemProvider.canLoadObject(ofClass: NSString.self) {
-                item.itemProvider.loadObject(ofClass: NSString.self, completionHandler: { (object, error) in
+                item.itemProvider.loadObject(ofClass: NSString.self) { (object, error) in
                     if let string = object as? NSString {
                         DispatchQueue.main.async {
                             self.infoLabel.text = String(format: "Dropped string - %@", string)
                         }
                     }
-                })
+                }
             }
         }
     }

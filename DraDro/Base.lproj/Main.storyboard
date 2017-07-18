@@ -52,9 +52,19 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gr3-mi-P3a">
+                                        <rect key="frame" x="225" y="0.0" width="150" height="323.5"/>
+                                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.49646832191780821" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="GVi-vM-6SN"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95600965995333542" green="1" blue="0.98583636134777675" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gr3-mi-P3a" secondAttribute="trailing" id="T7o-We-3Jy"/>
+                                    <constraint firstAttribute="bottom" secondItem="gr3-mi-P3a" secondAttribute="bottom" id="ami-pQ-wk0"/>
+                                    <constraint firstItem="gr3-mi-P3a" firstAttribute="top" secondItem="Ya4-ZU-ruy" secondAttribute="top" id="c0s-SO-1Sc"/>
                                     <constraint firstAttribute="bottom" secondItem="G4e-97-FK7" secondAttribute="bottom" constant="8.5" id="mAW-ux-74d"/>
                                     <constraint firstItem="G4e-97-FK7" firstAttribute="leading" secondItem="Ya4-ZU-ruy" secondAttribute="leading" constant="8" id="sYg-fY-jDc"/>
                                     <constraint firstAttribute="trailing" secondItem="G4e-97-FK7" secondAttribute="trailing" constant="8" id="skg-Ns-Uv4"/>
@@ -77,6 +87,7 @@
                     <connections>
                         <outlet property="draggableView" destination="vPt-Vf-FUI" id="cQe-cw-Eqm"/>
                         <outlet property="droppableView" destination="Ya4-ZU-ruy" id="0L1-YX-aFY"/>
+                        <outlet property="forbiddenView" destination="gr3-mi-P3a" id="Vaj-k0-2ok"/>
                         <outlet property="infoLabel" destination="G4e-97-FK7" id="GBY-lC-fgm"/>
                     </connections>
                 </viewController>
