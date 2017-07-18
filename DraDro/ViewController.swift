@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import os.log
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var draggableView: UIView!
     @IBOutlet weak var droppableView: UIView!
     
+    @IBOutlet weak var infoLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        infoLabel.text = ""
+        
         draggableView.addInteraction(UIDragInteraction(delegate: self))
+        droppableView.addInteraction(UIDropInteraction(delegate: self))
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -39,5 +45,29 @@ extension ViewController: UIDragInteractionDelegate {
             }
         }
         return []
+    }
+}
+
+extension ViewController: UIDropInteractionDelegate {
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        if session.canLoadObjects(ofClass: NSString.self) {
+            return UIDropProposal(operation: .copy)
+        } else {
+            return UIDropProposal(operation: .cancel)
+        }
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        for item in session.items {
+            if item.itemProvider.canLoadObject(ofClass: NSString.self) {
+                item.itemProvider.loadObject(ofClass: NSString.self, completionHandler: { (object, error) in
+                    if let string = object as? NSString {
+                        DispatchQueue.main.async {
+                            self.infoLabel.text = String(format: "Dropped string - %@", string)
+                        }
+                    }
+                })
+            }
+        }
     }
 }

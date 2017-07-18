@@ -20,15 +20,14 @@
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPt-Vf-FUI" userLabel="DraggableView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="323.5"/>
                                 <subviews>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Drag Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOF-LA-WYI">
-                                        <rect key="frame" x="34" y="28" width="90" height="21"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drag Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOF-LA-WYI">
+                                        <rect key="frame" x="34" y="28" width="65.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🐧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1S-hw-TSF">
-                                        <rect key="frame" x="34" y="82" width="36" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🐧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1S-hw-TSF">
+                                        <rect key="frame" x="34" y="83" width="23" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -36,13 +35,30 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.93087119917664352" blue="0.93079805810330407" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstItem="m1S-hw-TSF" firstAttribute="leading" secondItem="JOF-LA-WYI" secondAttribute="leading" id="JzC-n6-gsX"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m1S-hw-TSF" secondAttribute="trailing" constant="20" symbolic="YES" id="NvB-Rd-oVn"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JOF-LA-WYI" secondAttribute="trailing" constant="20" symbolic="YES" id="NyJ-E4-Mus"/>
                                     <constraint firstItem="JOF-LA-WYI" firstAttribute="leading" secondItem="vPt-Vf-FUI" secondAttribute="leading" constant="34" id="cxa-sJ-Ltc"/>
                                     <constraint firstItem="JOF-LA-WYI" firstAttribute="top" secondItem="vPt-Vf-FUI" secondAttribute="top" constant="28" id="d0y-bu-QCg"/>
+                                    <constraint firstItem="m1S-hw-TSF" firstAttribute="top" secondItem="JOF-LA-WYI" secondAttribute="bottom" constant="34" id="gqK-pB-e2h"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ya4-ZU-ruy" userLabel="DroppableView">
                                 <rect key="frame" x="0.0" y="343.5" width="375" height="323.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4e-97-FK7">
+                                        <rect key="frame" x="8" y="294" width="359" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.95600965995333542" green="1" blue="0.98583636134777675" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="G4e-97-FK7" secondAttribute="bottom" constant="8.5" id="mAW-ux-74d"/>
+                                    <constraint firstItem="G4e-97-FK7" firstAttribute="leading" secondItem="Ya4-ZU-ruy" secondAttribute="leading" constant="8" id="sYg-fY-jDc"/>
+                                    <constraint firstAttribute="trailing" secondItem="G4e-97-FK7" secondAttribute="trailing" constant="8" id="skg-Ns-Uv4"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,6 +77,7 @@
                     <connections>
                         <outlet property="draggableView" destination="vPt-Vf-FUI" id="cQe-cw-Eqm"/>
                         <outlet property="droppableView" destination="Ya4-ZU-ruy" id="0L1-YX-aFY"/>
+                        <outlet property="infoLabel" destination="G4e-97-FK7" id="GBY-lC-fgm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
