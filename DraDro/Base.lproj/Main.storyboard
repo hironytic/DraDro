@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,11 +13,11 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DraDro" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPt-Vf-FUI" userLabel="DraggableView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPt-Vf-FUI" userLabel="DraggableView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="323.5"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drag Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOF-LA-WYI">
@@ -32,18 +32,28 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draggable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeH-T5-9ar">
+                                        <rect key="frame" x="287.5" y="27" width="79.5" height="21"/>
+                                        <color key="backgroundColor" red="1" green="0.68661350845741875" blue="0.77805979180634444" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.93087119917664352" blue="0.93079805810330407" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="m1S-hw-TSF" firstAttribute="leading" secondItem="JOF-LA-WYI" secondAttribute="leading" id="JzC-n6-gsX"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m1S-hw-TSF" secondAttribute="trailing" constant="20" symbolic="YES" id="NvB-Rd-oVn"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JOF-LA-WYI" secondAttribute="trailing" constant="20" symbolic="YES" id="NyJ-E4-Mus"/>
+                                    <constraint firstItem="yeH-T5-9ar" firstAttribute="top" secondItem="vPt-Vf-FUI" secondAttribute="top" constant="27" id="O2E-96-aWj"/>
                                     <constraint firstItem="JOF-LA-WYI" firstAttribute="leading" secondItem="vPt-Vf-FUI" secondAttribute="leading" constant="34" id="cxa-sJ-Ltc"/>
                                     <constraint firstItem="JOF-LA-WYI" firstAttribute="top" secondItem="vPt-Vf-FUI" secondAttribute="top" constant="28" id="d0y-bu-QCg"/>
                                     <constraint firstItem="m1S-hw-TSF" firstAttribute="top" secondItem="JOF-LA-WYI" secondAttribute="bottom" constant="34" id="gqK-pB-e2h"/>
+                                    <constraint firstAttribute="trailing" secondItem="yeH-T5-9ar" secondAttribute="trailing" constant="8" id="mdQ-uO-8iJ"/>
+                                    <constraint firstItem="yeH-T5-9ar" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vPt-Vf-FUI" secondAttribute="leading" constant="20" symbolic="YES" id="oQf-BJ-I8H"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ya4-ZU-ruy" userLabel="DroppableView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ya4-ZU-ruy" userLabel="DroppableView">
                                 <rect key="frame" x="0.0" y="343.5" width="375" height="323.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4e-97-FK7">
@@ -52,7 +62,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gr3-mi-P3a">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gr3-mi-P3a">
                                         <rect key="frame" x="225" y="0.0" width="150" height="323.5"/>
                                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.49646832191780821" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -85,6 +95,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="draggableLabel" destination="yeH-T5-9ar" id="hth-gT-0jc"/>
                         <outlet property="draggableView" destination="vPt-Vf-FUI" id="cQe-cw-Eqm"/>
                         <outlet property="droppableView" destination="Ya4-ZU-ruy" id="0L1-YX-aFY"/>
                         <outlet property="forbiddenView" destination="gr3-mi-P3a" id="Vaj-k0-2ok"/>

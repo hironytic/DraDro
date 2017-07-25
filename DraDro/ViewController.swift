@@ -9,13 +9,23 @@
 import UIKit
 import os.log
 
+class LabelDragInteractor: NSObject, UIDragInteractionDelegate {
+    func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+        let text = ((interaction.view as? UILabel)?.text ?? "") as NSString
+        return [UIDragItem(itemProvider: NSItemProvider(object: text))]
+    }
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var draggableView: UIView!
     @IBOutlet weak var droppableView: UIView!
+    @IBOutlet weak var draggableLabel: UILabel!
     
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var forbiddenView: UIView!
+    
+    let labelDragInteractor = LabelDragInteractor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +34,7 @@ class ViewController: UIViewController {
         
         draggableView.addInteraction(UIDragInteraction(delegate: self))
         droppableView.addInteraction(UIDropInteraction(delegate: self))
+        draggableLabel.addInteraction(UIDragInteraction(delegate: labelDragInteractor))
         
         // Do any additional setup after loading the view, typically from a nib.
     }
