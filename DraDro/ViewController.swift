@@ -58,6 +58,16 @@ extension ViewController: UIDragInteractionDelegate {
         }
         return []
     }
+    
+    func dragInteraction(_ interaction: UIDragInteraction, previewForLifting item: UIDragItem, session: UIDragSession) -> UITargetedDragPreview? {
+        let point = session.location(in: draggableView)
+        if let hitView = draggableView.hitTest(point, with: nil) {
+            return UITargetedDragPreview(view: hitView)
+        }
+        
+        return nil
+    }
+    
 }
 
 extension ViewController: UIDropInteractionDelegate {
