@@ -1,0 +1,9 @@
+//
+//  DraDro.xcconfig
+//  DraDro
+//
+//  Created by 一宮 浩教 on 2017/07/25.
+//  Copyright © 2017年 Hironytic. All rights reserved.
+//
+
+#include "Team.xcconfig"
