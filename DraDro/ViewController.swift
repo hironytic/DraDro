@@ -53,7 +53,9 @@ extension ViewController: UIDragInteractionDelegate {
         if let hitView = draggableView.hitTest(point, with: nil) {
             if let labelView = hitView as? UILabel {
                 let text = (labelView.text ?? "") as NSString
-                return [UIDragItem(itemProvider: NSItemProvider(object: text))]
+                let dragItem = UIDragItem(itemProvider: NSItemProvider(object: text))
+                dragItem.localObject = labelView
+                return [dragItem]
             }
         }
         return []
@@ -61,10 +63,10 @@ extension ViewController: UIDragInteractionDelegate {
     
     func dragInteraction(_ interaction: UIDragInteraction, previewForLifting item: UIDragItem, session: UIDragSession) -> UITargetedDragPreview? {
         let point = session.location(in: draggableView)
-        guard let hitView = draggableView.hitTest(point, with: nil) else { return nil }
+        guard let labelView = item.localObject as? UILabel else { return nil }
 
         let previewView = UILabel()
-        previewView.text = "🚚" + ((hitView as? UILabel)?.text ?? "")
+        previewView.text = "🚚" + (labelView.text ?? "")
         previewView.font = UIFont.systemFont(ofSize: 42)
         previewView.sizeToFit()
         
