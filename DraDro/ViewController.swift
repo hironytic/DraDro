@@ -61,11 +61,18 @@ extension ViewController: UIDragInteractionDelegate {
     
     func dragInteraction(_ interaction: UIDragInteraction, previewForLifting item: UIDragItem, session: UIDragSession) -> UITargetedDragPreview? {
         let point = session.location(in: draggableView)
-        if let hitView = draggableView.hitTest(point, with: nil) {
-            return UITargetedDragPreview(view: hitView)
-        }
+        guard let hitView = draggableView.hitTest(point, with: nil) else { return nil }
+
+        let previewView = UILabel()
+        previewView.text = "🚚" + ((hitView as? UILabel)?.text ?? "")
+        previewView.font = UIFont.systemFont(ofSize: 42)
+        previewView.sizeToFit()
         
-        return nil
+        let target = UIDragPreviewTarget(container: draggableView, center: point)
+
+        return UITargetedDragPreview(view: previewView,
+                                     parameters: UIDragPreviewParameters(),
+                                     target: target)
     }
     
 }
