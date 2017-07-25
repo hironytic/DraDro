@@ -50,15 +50,13 @@ class ViewController: UIViewController {
 extension ViewController: UIDragInteractionDelegate {
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
         let point = session.location(in: draggableView)
-        if let hitView = draggableView.hitTest(point, with: nil) {
-            if let labelView = hitView as? UILabel {
-                let text = (labelView.text ?? "") as NSString
+        guard let hitView = draggableView.hitTest(point, with: nil) else { return [] }
+        guard let label = hitView as? UILabel else { return [] }
+
+        let text = (label.text ?? "") as NSString
         let dragItem = UIDragItem(itemProvider: NSItemProvider(object: text))
-                dragItem.localObject = labelView
+        dragItem.localObject = label
         return [dragItem]
-    }
-        }
-        return []
     }
     
     func dragInteraction(_ interaction: UIDragInteraction, previewForLifting item: UIDragItem, session: UIDragSession) -> UITargetedDragPreview? {
@@ -76,6 +74,22 @@ extension ViewController: UIDragInteractionDelegate {
                                      target: target)
     }
 
+    func dragInteraction(_ interaction: UIDragInteraction, itemsForAddingTo session: UIDragSession, withTouchAt point: CGPoint) -> [UIDragItem] {
+        guard let hitView = draggableView.hitTest(point, with: nil) else { return [] }
+        guard let label = hitView as? UILabel else { return [] }
+
+        // Don't add the item already being dragged
+        for item in session.items {
+            if let localObject = item.localObject as? UILabel, localObject == label {
+                return []
+            }
+        }
+        
+        let text = (label.text ?? "") as NSString
+        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: text))
+        dragItem.localObject = label
+        return [dragItem]
+    }
 }
 
 extension ViewController: UIDropInteractionDelegate {
