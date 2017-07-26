@@ -32,6 +32,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cola" translatesAutoresizingMaskIntoConstraints="NO" id="0Aj-ct-Afx">
+                                        <rect key="frame" x="34" y="378" width="66" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="5MG-ww-PHB"/>
+                                            <constraint firstAttribute="width" constant="66" id="ggZ-Tp-Gib"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tonkatsu" translatesAutoresizingMaskIntoConstraints="NO" id="8ou-04-y9M">
+                                        <rect key="frame" x="132" y="332" width="200" height="146"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="1eq-PU-WSz"/>
+                                            <constraint firstAttribute="height" constant="146" id="jld-RU-OdL"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.93087119917664352" blue="0.93079805810330407" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -40,7 +54,11 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JOF-LA-WYI" secondAttribute="trailing" constant="20" symbolic="YES" id="NyJ-E4-Mus"/>
                                     <constraint firstItem="JOF-LA-WYI" firstAttribute="leading" secondItem="vPt-Vf-FUI" secondAttribute="leading" constant="34" id="cxa-sJ-Ltc"/>
                                     <constraint firstItem="JOF-LA-WYI" firstAttribute="top" secondItem="vPt-Vf-FUI" secondAttribute="top" constant="28" id="d0y-bu-QCg"/>
+                                    <constraint firstItem="0Aj-ct-Afx" firstAttribute="leading" secondItem="vPt-Vf-FUI" secondAttribute="leading" constant="34" id="f0a-gJ-wmA"/>
                                     <constraint firstItem="m1S-hw-TSF" firstAttribute="top" secondItem="JOF-LA-WYI" secondAttribute="bottom" constant="34" id="gqK-pB-e2h"/>
+                                    <constraint firstAttribute="bottom" secondItem="0Aj-ct-Afx" secondAttribute="bottom" constant="24" id="s2g-Ys-tnD"/>
+                                    <constraint firstAttribute="bottom" secondItem="8ou-04-y9M" secondAttribute="bottom" constant="24" id="w7P-BX-qhy"/>
+                                    <constraint firstItem="8ou-04-y9M" firstAttribute="leading" secondItem="0Aj-ct-Afx" secondAttribute="trailing" constant="32" id="zel-70-F8B"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draggable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeH-T5-9ar">
@@ -104,7 +122,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="21.600000000000001" y="34.632683658170919"/>
+            <point key="canvasLocation" x="21.09375" y="34.5703125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Cola" width="262" height="400"/>
+        <image name="Tonkatsu" width="400" height="291"/>
+    </resources>
 </document>

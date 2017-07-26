@@ -51,44 +51,73 @@ extension ViewController: UIDragInteractionDelegate {
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
         let point = session.location(in: draggableView)
         guard let hitView = draggableView.hitTest(point, with: nil) else { return [] }
-        guard let label = hitView as? UILabel else { return [] }
-
-        let text = (label.text ?? "") as NSString
-        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: text))
-        dragItem.localObject = label
-        return [dragItem]
+        
+        switch hitView {
+        case let label as UILabel:
+            let text = (label.text ?? "") as NSString
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: text))
+            dragItem.localObject = label
+            return [dragItem]
+            
+        case let imageView as UIImageView:
+            let image = imageView.image!
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: image))
+            dragItem.localObject = imageView
+            return [dragItem]
+            
+        default:
+            return []
+        }
     }
     
     func dragInteraction(_ interaction: UIDragInteraction, previewForLifting item: UIDragItem, session: UIDragSession) -> UITargetedDragPreview? {
-        guard let label = item.localObject as? UILabel else { return nil }
-
-        let previewView = UILabel()
-        previewView.text = "🚚" + (label.text ?? "")
-        previewView.font = UIFont.systemFont(ofSize: 42)
-        previewView.sizeToFit()
-
-        let target = UIDragPreviewTarget(container: draggableView, center: label.center)
-
-        return UITargetedDragPreview(view: previewView,
-                                     parameters: UIDragPreviewParameters(),
-                                     target: target)
+        switch item.localObject {
+        case let label as UILabel:
+            let previewView = UILabel()
+            previewView.text = "🚚" + (label.text ?? "")
+            previewView.font = UIFont.systemFont(ofSize: 42)
+            previewView.sizeToFit()
+            
+            let target = UIDragPreviewTarget(container: draggableView, center: label.center)
+            
+            return UITargetedDragPreview(view: previewView,
+                                         parameters: UIDragPreviewParameters(),
+                                         target: target)
+        
+        case let imageView as UIImageView:
+            return UITargetedDragPreview(view: imageView)
+            
+        default:
+            return nil
+        }
     }
 
     func dragInteraction(_ interaction: UIDragInteraction, itemsForAddingTo session: UIDragSession, withTouchAt point: CGPoint) -> [UIDragItem] {
         guard let hitView = draggableView.hitTest(point, with: nil) else { return [] }
-        guard let label = hitView as? UILabel else { return [] }
 
         // Don't add the item already being dragged
-        for item in session.items {
-            if let localObject = item.localObject as? UILabel, localObject == label {
-                return []
-            }
+        guard !session.items.contains(where:{ ($0.localObject as? UIView) == hitView }) else {
+            return []
         }
         
-        let text = (label.text ?? "") as NSString
-        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: text))
-        dragItem.localObject = label
-        return [dragItem]
+        switch hitView {
+        case let label as UILabel:
+            guard !session.items.contains(where: { !$0.itemProvider.canLoadObject(ofClass: NSString.self) }) else { return [] }
+            let text = (label.text ?? "") as NSString
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: text))
+            dragItem.localObject = label
+            return [dragItem]
+            
+        case let imageView as UIImageView:
+            guard !session.items.contains(where: { !$0.itemProvider.canLoadObject(ofClass: UIImage.self) }) else { return [] }
+            let image = imageView.image!
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: image))
+            dragItem.localObject = imageView
+            return [dragItem]
+            
+        default:
+            return []
+        }
     }
 }
 
