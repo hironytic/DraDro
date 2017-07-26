@@ -74,7 +74,7 @@ extension ViewController: UIDragInteractionDelegate {
         switch item.localObject {
         case let label as UILabel:
             let previewView = UILabel()
-            previewView.text = "🚚" + (label.text ?? "")
+            previewView.text = /* "🚚" + */ (label.text ?? "")
             previewView.font = UIFont.systemFont(ofSize: 42)
             previewView.sizeToFit()
             
@@ -92,6 +92,32 @@ extension ViewController: UIDragInteractionDelegate {
         }
     }
 
+    func dragInteraction(_ interaction: UIDragInteraction, willAnimateLiftWith animator: UIDragAnimating, session: UIDragSession) {
+        for item in session.items {
+            if let label = item.localObject as? UILabel {
+                animator.addAnimations {
+                    label.alpha = 0.5
+                }
+            }
+        }
+    }
+    
+    func dragInteraction(_ interaction: UIDragInteraction, item: UIDragItem, willAnimateCancelWith animator: UIDragAnimating) {
+        if let label = item.localObject as? UILabel {
+            animator.addAnimations {
+                label.alpha = 1
+            }
+        }
+    }
+    
+    func dragInteraction(_ interaction: UIDragInteraction, session: UIDragSession, didEndWith operation: UIDropOperation) {
+        for item in session.items {
+            if let label = item.localObject as? UILabel {
+                label.alpha = 1
+            }
+        }
+    }
+    
     func dragInteraction(_ interaction: UIDragInteraction, itemsForAddingTo session: UIDragSession, withTouchAt point: CGPoint) -> [UIDragItem] {
         guard let hitView = draggableView.hitTest(point, with: nil) else { return [] }
 
