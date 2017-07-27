@@ -91,6 +91,12 @@ extension ViewController: UIDragInteractionDelegate {
             return nil
         }
     }
+    
+    func dragInteraction(_ interaction: UIDragInteraction, previewForCancelling item: UIDragItem, withDefault defaultPreview: UITargetedDragPreview) -> UITargetedDragPreview? {
+        guard let srcView = item.localObject as? UIView else { return defaultPreview }
+        let target = UIDragPreviewTarget(container: srcView.superview!, center: srcView.center)
+        return defaultPreview.retargetedPreview(with: target)
+    }
 
     func dragInteraction(_ interaction: UIDragInteraction, willAnimateLiftWith animator: UIDragAnimating, session: UIDragSession) {
         for item in session.items {
