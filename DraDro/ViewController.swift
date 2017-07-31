@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var forbiddenView: UIView!
+    @IBOutlet weak var dropIcon: UIImageView!
     
     let labelDragInteractor = LabelDragInteractor()
     
@@ -181,5 +182,12 @@ extension ViewController: UIDropInteractionDelegate {
                 }
             }
         }
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, previewForDropping item: UIDragItem, withDefault defaultPreview: UITargetedDragPreview) -> UITargetedDragPreview? {
+        let target = UIDragPreviewTarget(container: droppableView,
+                                         center: dropIcon.center,
+                                         transform: CGAffineTransform(scaleX: 0.2, y: 0.2))
+        return defaultPreview.retargetedPreview(with: target)
     }
 }

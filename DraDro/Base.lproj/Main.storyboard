@@ -26,8 +26,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🐧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1S-hw-TSF">
-                                        <rect key="frame" x="34" y="112.5" width="47" height="50.5"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="やっていく" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1S-hw-TSF">
+                                        <rect key="frame" x="34" y="112.5" width="211.5" height="50.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                                 <rect key="frame" x="0.0" y="522" width="768" height="502"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4e-97-FK7">
-                                        <rect key="frame" x="8" y="472.5" width="752" height="21"/>
+                                        <rect key="frame" x="76" y="472.5" width="684" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -84,14 +84,23 @@
                                             <constraint firstAttribute="width" constant="150" id="GVi-vM-6SN"/>
                                         </constraints>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DropIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VU7-99-gXH">
+                                        <rect key="frame" x="8" y="434" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Hgy-fe-OCJ"/>
+                                            <constraint firstAttribute="width" constant="60" id="IWT-mB-QAb"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95600965995333542" green="1" blue="0.98583636134777675" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstItem="VU7-99-gXH" firstAttribute="leading" secondItem="Ya4-ZU-ruy" secondAttribute="leading" constant="8" id="5cT-h4-3N5"/>
+                                    <constraint firstAttribute="bottom" secondItem="VU7-99-gXH" secondAttribute="bottom" constant="8" id="BUf-Xc-OWn"/>
                                     <constraint firstAttribute="trailing" secondItem="gr3-mi-P3a" secondAttribute="trailing" id="T7o-We-3Jy"/>
                                     <constraint firstAttribute="bottom" secondItem="gr3-mi-P3a" secondAttribute="bottom" id="ami-pQ-wk0"/>
                                     <constraint firstItem="gr3-mi-P3a" firstAttribute="top" secondItem="Ya4-ZU-ruy" secondAttribute="top" id="c0s-SO-1Sc"/>
                                     <constraint firstAttribute="bottom" secondItem="G4e-97-FK7" secondAttribute="bottom" constant="8.5" id="mAW-ux-74d"/>
-                                    <constraint firstItem="G4e-97-FK7" firstAttribute="leading" secondItem="Ya4-ZU-ruy" secondAttribute="leading" constant="8" id="sYg-fY-jDc"/>
+                                    <constraint firstItem="G4e-97-FK7" firstAttribute="leading" secondItem="VU7-99-gXH" secondAttribute="trailing" constant="8" id="sYg-fY-jDc"/>
                                     <constraint firstAttribute="trailing" secondItem="G4e-97-FK7" secondAttribute="trailing" constant="8" id="skg-Ns-Uv4"/>
                                 </constraints>
                             </view>
@@ -115,6 +124,7 @@
                     <connections>
                         <outlet property="draggableLabel" destination="yeH-T5-9ar" id="hth-gT-0jc"/>
                         <outlet property="draggableView" destination="vPt-Vf-FUI" id="cQe-cw-Eqm"/>
+                        <outlet property="dropIcon" destination="VU7-99-gXH" id="AhF-ZK-Vbm"/>
                         <outlet property="droppableView" destination="Ya4-ZU-ruy" id="0L1-YX-aFY"/>
                         <outlet property="forbiddenView" destination="gr3-mi-P3a" id="Vaj-k0-2ok"/>
                         <outlet property="infoLabel" destination="G4e-97-FK7" id="GBY-lC-fgm"/>
@@ -127,6 +137,7 @@
     </scenes>
     <resources>
         <image name="Cola" width="262" height="400"/>
+        <image name="DropIcon" width="482" height="482"/>
         <image name="Tonkatsu" width="400" height="291"/>
     </resources>
 </document>
