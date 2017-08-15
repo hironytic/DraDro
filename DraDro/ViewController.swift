@@ -185,9 +185,21 @@ extension ViewController: UIDropInteractionDelegate {
     }
     
     func dropInteraction(_ interaction: UIDropInteraction, previewForDropping item: UIDragItem, withDefault defaultPreview: UITargetedDragPreview) -> UITargetedDragPreview? {
-        let target = UIDragPreviewTarget(container: droppableView,
-                                         center: dropIcon.center,
+        let target = UIDragPreviewTarget(container: view,
+                                         center: droppableView.center,
                                          transform: CGAffineTransform(scaleX: 0.2, y: 0.2))
         return defaultPreview.retargetedPreview(with: target)
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, item: UIDragItem, willAnimateDropWith animator: UIDragAnimating) {
+        animator.addAnimations {
+            self.dropIcon.transform = CGAffineTransform(translationX: self.droppableView.bounds.width / 2 - self.dropIcon.center.x,
+                                                        y: self.droppableView.bounds.height / 2 - self.dropIcon.center.y)
+                                        .scaledBy(x: 3, y: 3)
+        }
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, concludeDrop session: UIDropSession) {
+        dropIcon.transform = CGAffineTransform.identity
     }
 }
