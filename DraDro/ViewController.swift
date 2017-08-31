@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import MobileCoreServices
 
 class LabelDragInteractor: NSObject, UIDragInteractionDelegate {
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
@@ -15,6 +16,53 @@ class LabelDragInteractor: NSObject, UIDragInteractionDelegate {
         return [UIDragItem(itemProvider: NSItemProvider(object: text))]
     }
 }
+
+enum SlowImageError: Error {
+    case unknownTypeIdentifier
+}
+
+class SlowImage: NSObject, NSItemProviderWriting {
+    private let image: UIImage
+    
+    public init(image: UIImage) {
+        self.image = image
+    }
+    
+    public static var writableTypeIdentifiersForItemProvider: [String] {
+        return [kUTTypePNG as String]
+    }
+    
+    private func countUp(current: Int64, progress: Progress, completion: @escaping () -> Void) {
+        progress.completedUnitCount = current
+        if (current < 10) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
+                self.countUp(current: current + 1, progress: progress, completion: completion)
+            }
+        } else {
+            completion()
+        }
+    }
+    
+    public func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Swift.Void) -> Progress? {
+        var progress: Progress? = nil
+        switch typeIdentifier {
+        case kUTTypePNG as NSString as String:
+            let prg = Progress(totalUnitCount: 10)
+            progress = prg
+            
+            countUp(current: 0, progress: prg) {
+                completionHandler(UIImagePNGRepresentation(self.image), nil)
+            }
+            
+        default:
+            completionHandler(nil, SlowImageError.unknownTypeIdentifier)
+        }
+        
+        return progress
+    }
+}
+
+class SlowImageView: UIImageView { }
 
 class ViewController: UIViewController {
 
@@ -59,7 +107,13 @@ extension ViewController: UIDragInteractionDelegate {
             let dragItem = UIDragItem(itemProvider: NSItemProvider(object: text))
             dragItem.localObject = label
             return [dragItem]
-            
+        
+        case let slowImageView as SlowImageView:
+            let image = slowImageView.image!
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: SlowImage(image: image)))
+            dragItem.localObject = slowImageView
+            return [dragItem]
+
         case let imageView as UIImageView:
             let image = imageView.image!
             let dragItem = UIDragItem(itemProvider: NSItemProvider(object: image))

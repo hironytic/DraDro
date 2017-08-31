@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,14 +46,23 @@
                                             <constraint firstAttribute="height" constant="146" id="jld-RU-OdL"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kame" translatesAutoresizingMaskIntoConstraints="NO" id="fh4-2l-HLh" customClass="SlowImageView" customModule="DraDro" customModuleProvider="target">
+                                        <rect key="frame" x="560" y="317" width="200" height="152"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="Lon-4W-Ewk"/>
+                                            <constraint firstAttribute="height" constant="152" id="cTv-fg-y3H"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.93087119917664352" blue="0.93079805810330407" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="m1S-hw-TSF" firstAttribute="leading" secondItem="JOF-LA-WYI" secondAttribute="leading" id="JzC-n6-gsX"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m1S-hw-TSF" secondAttribute="trailing" constant="20" symbolic="YES" id="NvB-Rd-oVn"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JOF-LA-WYI" secondAttribute="trailing" constant="20" symbolic="YES" id="NyJ-E4-Mus"/>
+                                    <constraint firstAttribute="bottom" secondItem="fh4-2l-HLh" secondAttribute="bottom" constant="33" id="WFb-06-Ham"/>
                                     <constraint firstItem="JOF-LA-WYI" firstAttribute="leading" secondItem="vPt-Vf-FUI" secondAttribute="leading" constant="34" id="cxa-sJ-Ltc"/>
                                     <constraint firstItem="JOF-LA-WYI" firstAttribute="top" secondItem="vPt-Vf-FUI" secondAttribute="top" constant="28" id="d0y-bu-QCg"/>
+                                    <constraint firstAttribute="trailing" secondItem="fh4-2l-HLh" secondAttribute="trailing" constant="8" id="e88-aK-F9v"/>
                                     <constraint firstItem="0Aj-ct-Afx" firstAttribute="leading" secondItem="vPt-Vf-FUI" secondAttribute="leading" constant="34" id="f0a-gJ-wmA"/>
                                     <constraint firstItem="m1S-hw-TSF" firstAttribute="top" secondItem="JOF-LA-WYI" secondAttribute="bottom" constant="34" id="gqK-pB-e2h"/>
                                     <constraint firstAttribute="bottom" secondItem="0Aj-ct-Afx" secondAttribute="bottom" constant="24" id="s2g-Ys-tnD"/>
@@ -138,6 +147,7 @@
     <resources>
         <image name="Cola" width="262" height="400"/>
         <image name="DropIcon" width="482" height="482"/>
+        <image name="Kame" width="400" height="305"/>
         <image name="Tonkatsu" width="400" height="291"/>
     </resources>
 </document>
