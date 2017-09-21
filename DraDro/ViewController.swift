@@ -154,10 +154,12 @@ extension ViewController: UIDragInteractionDelegate {
     }
 
     func dragInteraction(_ interaction: UIDragInteraction, willAnimateLiftWith animator: UIDragAnimating, session: UIDragSession) {
-        for item in session.items {
-            if let label = item.localObject as? UILabel {
-                animator.addAnimations {
-                    label.alpha = 0.5
+        animator.addCompletion { (pos) in
+            if pos == .end {
+                for item in session.items {
+                    if let label = item.localObject as? UILabel {
+                        label.alpha = 0.5
+                    }
                 }
             }
         }
